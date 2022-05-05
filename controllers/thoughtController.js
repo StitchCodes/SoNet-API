@@ -1,4 +1,5 @@
 const { User, Thoughts } = require('../models');
+const userController = require('./userController');
 
 module.exports = {
     // GET ALL THOUGHTS
@@ -40,6 +41,22 @@ module.exports = {
             });
     },
     // PUT THOUGHT
+    updateThought(req, res) {
+        User.findOneAndUpdate(
+            { _id: req.params.thoughtId },
+            { $set: req.body },
+            { runValidators: true, new: true }
+        )
+        .then((thought) =>
+            !thought
+            ? res.status(404).jsonn({ message: 'No thought with that id!'})
+            : res.json(thought)
+        )
+        .catch((err) => {
+            console.log(err);
+            res.status(500).json(err);
+        });
+    },
     // DELETE THOUGHT
     deleteThought(req, res) {
         Thoughts.findOneAndRemove({ _id: req.params.thoughtId })
@@ -60,5 +77,5 @@ module.exports = {
                     : res.json({ message: 'Thought successfully removed!'})
             )
             .catch((err) => res.status(500).json(err));
-    }
-}
+    },
+};
