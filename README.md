@@ -12,9 +12,9 @@ Run `npm run start` from your terminal.
 
 
 
-## JATE Screenshot
+## Social Network API Walkthrough
 
-![VideoWalk Through](https://i.imgur.com/placeholder)
+![VideoWalk Through](https://drive.google.com/file/d/1T5WOOYy0lGEvAFJbW6XUI4hMveJXaSID/view)
 
 
 ## Installation
