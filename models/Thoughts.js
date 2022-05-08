@@ -1,5 +1,5 @@
 const { Schema, model } = require('mongoose');
-const userSchema = require('./User');
+const Reaction = require('./Reaction');
 
 const thoughtSchema = new Schema(
     {
@@ -23,18 +23,21 @@ const thoughtSchema = new Schema(
                 ref: 'User',
             },
         ],
+        reactions: [Reaction],
+    },
+    {
+        toJSON: {
+            virtuals: true,
+        },
+        id: false,
     }
-)
+);
 
-// createdAt
-    // Use a getter method to format the timestamp on query
-
-
-// reactions (These are like replies)
-    // Array of nested documents created with the reactionSchema
-
-// Schema Settings:
-    // Create a virtual called reactionCount that retrieves the length of the thought's reactions array field on query.
+thoughtSchema
+    .virtual('reactionCount')
+    .get(function () {
+        return this.reactions.length;
+    });
 
 const Thoughts = model('thought', thoughtSchema);
 

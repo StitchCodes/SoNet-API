@@ -1,5 +1,4 @@
 const { Schema, model } = require('mongoose');
-const thoughtsSchema = require('./Thoughts');
 
 const userSchema = new Schema(
     {
@@ -19,23 +18,24 @@ const userSchema = new Schema(
             type: Schema.Types.ObjectId,
             ref: 'Thoughts'
         }],
-        // friends: [User]
+        friends: {
+            type: Schema.Types.ObjectId,
+            ref: 'User'
+        },
     }, 
     {toJSON: {
         virtuals: true,
         getters: true
         },
+        id: false,
     }
 );
 
 userSchema
     .virtual('friendCount')
     .get(function () {
-        return `${this.friends.length}`;
+        return this.friends.length;
     });
-
-    // friends
-        // Array of _id values referencing the User model (self-reference)
 
 const User = model('user', userSchema);
 

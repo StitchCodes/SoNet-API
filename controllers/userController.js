@@ -5,10 +5,7 @@ module.exports = {
     // Get all users
     getUsers(req, res) {
         User.find()
-          .then( async (users) => {
-            console.log(users);  
-            res.json(users)
-        })
+          .then((users) => res.json(users))
           .catch((err) => res.status(500).json(err));
           
           
@@ -17,7 +14,7 @@ module.exports = {
     getSingleUser(req, res) {
         User.findOne({ _id: req.params.userId })
           .select('-__v')
-          .then( async (user) =>
+          .then((user) =>
             !user
               ? res.status(404).json({ message: 'No user with that ID' })
               : res.json(user)
@@ -26,7 +23,6 @@ module.exports = {
       },
     // POST NEW USER
     createUser(req, res) {
-        console.log(req.body);
         User.create(req.body)
             .then((user) => res.json(user))
             .catch((err) => res.status(500).json(err));
