@@ -1,4 +1,4 @@
-const user = [ 'Fernanda', 'Miguel', 'Angel', 'Ana', 'Sofia', 'Alexa', 'Renata'];
+const user = [ 'Fernanda', 'Miguel', 'Angel', 'Ana', 'Sofia', 'Alexa', 'Renata', 'Paulina', 'Mirti', 'Yiyis'];
 
 const thought = ['Im very happy', 'I want to go shopping', 'Im hungry', 'Need another coffee', 'Wants more toys']
 

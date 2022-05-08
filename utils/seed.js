@@ -11,20 +11,22 @@ connection.once('open', async () => {
   await Thoughts.deleteMany({});
   
   const userThoughts= [];
-  const thoughts = getRandomThought(1);
+  const thoughts = getRandomThought(8);
 
-  for (let i = 0; i < 1; i++) {
+  for (let i = 0; i < 8; i++) {
     const username = getRandomUser();
     
     userThoughts.push({
       username,
       thoughts
-    })
-  }
+    });
+  };
 
-  User.collection.insertMany(username);
+  User.collection.insertMany(userThoughts);
   Thoughts.collection.insertMany(thoughts);
 
+  console.table(userThoughts);
+  console.table(thoughts)
   console.info('Seed sucesfull! 🌱');
   process.exit(0);
 });
